@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.AddUserView"
+             Title="Ajouter un utilisateur">
+
+    <!-- Dégradé de fond -->
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FF6600" Offset="0.0" />
+            <GradientStop Color="#FFA726" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="25" VerticalOptions="CenterAndExpand">
+
+            <!-- Logo Basic Fit -->
+            <Border BackgroundColor="White"
+                    Padding="10"
+                    StrokeShape="RoundRectangle 80"
+                    HorizontalOptions="Center">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="2,2" Opacity="0.25" />
+                </Border.Shadow>
+                <Image Source="basic_fat.png"
+                       HeightRequest="100"
+                       WidthRequest="100"
+                       Aspect="AspectFill">
+                    <Image.Clip>
+                        <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50"/>
+                    </Image.Clip>
+                </Image>
+            </Border>
+
+            <!-- Titre -->
+            <Label Text="AJOUTER UN UTILISATEUR"
+                   FontAttributes="Bold"
+                   FontSize="28"
+                   HorizontalOptions="Center"
+                   TextColor="White" />
+
+            <!-- Username -->
+            <Border Stroke="#DDD" Background="#F0F0F0" StrokeShape="RoundRectangle 12">
+                <HorizontalStackLayout Padding="10" Spacing="10">
+                    <Image Source="icon_user.png" WidthRequest="20" HeightRequest="20" />
+                    <Entry Text="{Binding Username}"
+                           FontSize="18"
+                           Placeholder="Nom d'utilisateur"
+                           BackgroundColor="Transparent"
+                           TextColor="#333"
+                           PlaceholderColor="#888"
+                           WidthRequest="280"/>
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- Email -->
+            <Border Stroke="#DDD" Background="#F0F0F0" StrokeShape="RoundRectangle 12">
+                <HorizontalStackLayout Padding="10" Spacing="10">
+                    <Image Source="icon_email.png" WidthRequest="20" HeightRequest="20" />
+                    <Entry Text="{Binding Email}"
+                           FontSize="18"
+                           Placeholder="Adresse e-mail"
+                           Keyboard="Email"
+                           BackgroundColor="Transparent"
+                           TextColor="#333"
+                           PlaceholderColor="#888"
+                           WidthRequest="280"/>
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- Mot de passe -->
+            <Border Stroke="#DDD" Background="#F0F0F0" StrokeShape="RoundRectangle 12">
+                <HorizontalStackLayout Padding="10" Spacing="10">
+                    <Image Source="icon_lock.png" WidthRequest="20" HeightRequest="20" />
+                    <Entry Text="{Binding Password}"
+                           FontSize="18"
+                           Placeholder="Mot de passe"
+                           IsPassword="True"
+                           BackgroundColor="Transparent"
+                           TextColor="#333"
+                           PlaceholderColor="#888"
+                           WidthRequest="280"/>
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- Rôle -->
+            <Border Stroke="#DDD" Background="#F0F0F0" StrokeShape="RoundRectangle 12">
+                <HorizontalStackLayout Padding="10" Spacing="10">
+                    <Image Source="icon_role.png" WidthRequest="20" HeightRequest="20" />
+                    <Picker SelectedItem="{Binding Role}"
+                            Title="Rôle"
+                            TextColor="#333"
+                            BackgroundColor="Transparent"
+                            WidthRequest="280">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>user</x:String>
+                                <x:String>admin</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- Message de statut -->
+            <Label Text="{Binding StatusMessage}"
+                   FontAttributes="Bold"
+                   FontSize="14"
+                   TextColor="LimeGreen"
+                   HorizontalOptions="Center"
+                   IsVisible="{Binding IsStatusVisible}" />
+
+            <!-- Bouton Créer -->
+            <Button Text="CRÉER L'UTILISATEUR"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    BackgroundColor="#6A5ACD"
+                    TextColor="White"
+                    Command="{Binding AddUserCommand}"
+                    CornerRadius="10"
+                    HeightRequest="50" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

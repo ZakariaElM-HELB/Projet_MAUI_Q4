@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.LoginView"
+             Title="Connexion">
+
+    <!-- Dégradé de fond -->
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FF6600" Offset="0.0" />
+            <GradientStop Color="#FFA726" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="25" VerticalOptions="CenterAndExpand">
+
+            <!-- Logo -->
+            <Border BackgroundColor="White"
+                    Padding="10"
+                    StrokeShape="RoundRectangle 80"
+                    HorizontalOptions="Center">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="2,2" Opacity="0.25" />
+                </Border.Shadow>
+                <Image Source="basic_fat.png"
+                       HeightRequest="100"
+                       WidthRequest="100"
+                       Aspect="AspectFill">
+                    <Image.Clip>
+                        <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50"/>
+                    </Image.Clip>
+                </Image>
+            </Border>
+
+            <!-- Titre -->
+            <Label Text="SE CONNECTER"
+                   FontAttributes="Bold"
+                   FontSize="28"
+                   HorizontalOptions="Center"
+                   TextColor="White" />
+
+            <!-- Champ E-mail -->
+            <Border Stroke="#DDD" Background="#F0F0F0" StrokeShape="RoundRectangle 12">
+                <HorizontalStackLayout Padding="10" Spacing="10">
+                    <Image Source="icon_email.png" WidthRequest="20" HeightRequest="20" />
+                    <Entry Text="{Binding Email}"
+                           FontSize="18"
+                           Placeholder="E-mail"
+                           BackgroundColor="Transparent"
+                           TextColor="#333"
+                           PlaceholderColor="#888"
+                           WidthRequest="280"/>
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- Champ Mot de passe -->
+            <Border Stroke="#DDD" Background="#F0F0F0" StrokeShape="RoundRectangle 12">
+                <HorizontalStackLayout Padding="10" Spacing="10">
+                    <Image Source="icon_lock.png" WidthRequest="20" HeightRequest="20" />
+                    <Entry Text="{Binding Password}"
+                           FontSize="18"
+                           Placeholder="Mot de passe"
+                           IsPassword="True"
+                           BackgroundColor="Transparent"
+                           TextColor="#333"
+                           PlaceholderColor="#888"
+                           WidthRequest="280"/>
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- Checkbox -->
+            <HorizontalStackLayout Spacing="10">
+                <CheckBox IsChecked="{Binding KeepConnected}" />
+                <Label Text="Garder la session ouverte"
+                       VerticalOptions="Center"
+                       FontSize="13"
+                       TextColor="White" />
+            </HorizontalStackLayout>
+
+            <!-- Message d'erreur -->
+            <Label Text="{Binding ErrorMessage}"
+                   FontAttributes="Bold"
+                   FontSize="14"
+                   TextColor="Crimson"
+                   HorizontalOptions="Center"
+                   Margin="0,5,0,0"
+                   IsVisible="True" />
+
+
+            <!-- Bouton de connexion -->
+            <Button Text="SE CONNECTER"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    BackgroundColor="#6A5ACD"
+                    TextColor="White"
+                    Command="{Binding LoginCommand}"
+                    CornerRadius="10"
+                    HeightRequest="50" />
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

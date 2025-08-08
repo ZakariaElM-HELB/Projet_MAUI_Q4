@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.AllMembersView"
+             BackgroundColor="#f57c00"
+             Title="Tous les membres"
+             xmlns:vm="clr-namespace:MyApp.ViewModel">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <Label Text="👥 Tous les membres" 
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+
+            <Entry Placeholder="🔍 Rechercher par nom ou ID"
+                   Text="{Binding SearchQuery}"
+                   BackgroundColor="White"
+                   TextColor="Black"
+                   FontSize="16"
+                   Margin="0,0,0,5"/>
+
+            <HorizontalStackLayout Spacing="12"
+                                   HorizontalOptions="Center"
+                                   Margin="0,0,0,10">
+                <Picker Title="Abonnement"
+                        WidthRequest="160"
+                        SelectedItem="{Binding SelectedSubscription}"
+                        TitleColor="White"
+                        TextColor="White"
+                        BackgroundColor="#444"
+                        FontSize="14"
+                        HeightRequest="60">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Tous</x:String>
+                            <x:String>Gratuit</x:String>
+                            <x:String>Standard</x:String>
+                            <x:String>Premium</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Picker Title="Trier par"
+                        WidthRequest="120"
+                        SelectedItem="{Binding SortBy}"
+                        TitleColor="White"
+                        TextColor="White"
+                        BackgroundColor="#444"
+                        FontSize="14"
+                        HeightRequest="60">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>ID</x:String>
+                            <x:String>Nom</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Spacing="12" HorizontalOptions="Center">
+                <Button Text="📥 Importer CSV"
+                        Command="{Binding ImportCSVMembersCommand}"
+                        BackgroundColor="#2e2e2e"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="12"
+                        Padding="12"/>
+                <Button Text="📤 Exporter CSV"
+                        Command="{Binding ExportCSVMembersCommand}"
+                        BackgroundColor="#444"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="12"
+                        Padding="12"/>
+                <Button Text="📡 Envoyer JSON"
+                        Command="{Binding UploadJsonCommand}"
+                        BackgroundColor="#1e88e5"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="12"
+                        Padding="12"/>
+            </HorizontalStackLayout>
+
+            <CollectionView ItemsSource="{Binding FilteredMembers}"
+                            Margin="0,10,0,0">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Stroke="#444"
+                                StrokeThickness="1"
+                                BackgroundColor="Transparent"
+                                Margin="6"
+                                Padding="0"
+                                HeightRequest="340"
+                                WidthRequest="600"
+                                StrokeShape="RoundRectangle 14">
+
+                            <Grid>
+                                <Image Source="{Binding ProfileBackground}"
+                                       Aspect="AspectFill"
+                                       Opacity="0.85"
+                                       VerticalOptions="FillAndExpand"
+                                       HorizontalOptions="FillAndExpand"
+                                       ZIndex="0"/>
+
+                                <BoxView BackgroundColor="#000"
+                                         Opacity="0.4"
+                                         VerticalOptions="FillAndExpand"
+                                         HorizontalOptions="FillAndExpand"
+                                         ZIndex="1"/>
+
+                                <VerticalStackLayout Padding="10"
+                                                     Spacing="8"
+                                                     ZIndex="2"
+                                                     HorizontalOptions="FillAndExpand">
+
+                                    <Image Source="{Binding ProfilePicture}"
+                                           WidthRequest="70"
+                                           HeightRequest="70"
+                                           Aspect="AspectFill"
+                                           Clip="Circle"
+                                           HorizontalOptions="Center"/>
+
+                                    <Label Text="{Binding FirstName}"
+                                           FontSize="20"
+                                           FontAttributes="Bold"
+                                           TextColor="White"
+                                           HorizontalOptions="Center"/>
+                                    <Label Text="{Binding LastName}"
+                                           FontSize="18"
+                                           TextColor="#ddd"
+                                           HorizontalOptions="Center"/>
+                                    <Label Text="{Binding BirthDate}"
+                                           FontSize="16"
+                                           TextColor="#ccc"
+                                           HorizontalOptions="Center"/>
+                                    <Label Text="{Binding Id, StringFormat='ID : {0}'}"
+                                           FontSize="14"
+                                           TextColor="#bbb"
+                                           HorizontalOptions="Center"/>
+                                    <Label Text="{Binding SubscriptionType, StringFormat='Abonnement : {0}'}"
+                                           FontSize="16"
+                                           FontAttributes="Italic"
+                                           TextColor="#eee"
+                                           HorizontalOptions="Center"/>
+
+                                    <HorizontalStackLayout Spacing="10"
+                                                           HorizontalOptions="Center"
+                                                           Margin="0,10,0,0"
+                                                           Padding="0">
+
+                                        <Button Text="✏️ Modifier"
+                                                FontSize="14"
+                                                Padding="8,4"
+                                                WidthRequest="120"
+                                                HeightRequest="40"
+                                                CornerRadius="12"
+                                                BackgroundColor="#388e3c"
+                                                TextColor="White"
+                                                FontAttributes="Bold"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditMemberCommand}"
+                                                CommandParameter="{Binding}" />
+
+                                        <Button Text="🗑️ Supprimer"
+                                                FontSize="14"
+                                                Padding="8,4"
+                                                WidthRequest="120"
+                                                HeightRequest="40"
+                                                CornerRadius="12"
+                                                BackgroundColor="#d32f2f"
+                                                TextColor="White"
+                                                FontAttributes="Bold"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteMemberCommand}"
+                                                CommandParameter="{Binding}" />
+
+                                        <Button Text="📊 Graphique"
+                                                FontSize="14"
+                                                Padding="8,4"
+                                                WidthRequest="120"
+                                                HeightRequest="40"
+                                                CornerRadius="12"
+                                                BackgroundColor="#1976d2"
+                                                TextColor="White"
+                                                FontAttributes="Bold"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ShowStatsCommand}"
+                                                CommandParameter="{Binding}" />
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

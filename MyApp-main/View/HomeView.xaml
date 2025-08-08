@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.HomeView"
+             x:Name="HomePageRef"
+             Title="Accueil">
+
+    <!-- Dégradé de fond -->
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FF6600" Offset="0.0" />
+            <GradientStop Color="#FFA726" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="25">
+
+            <!-- En-tête -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Accueil"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       VerticalOptions="Center" />
+
+                <Button x:Name="UserMenuButton"
+                        Grid.Column="1"
+                        BackgroundColor="Transparent"
+                        ImageSource="icon_user.png"
+                        HeightRequest="85"
+                        WidthRequest="85"
+                        Command="{Binding OpenUserMenuCommand}" />
+            </Grid>
+
+            <!-- Logo stylisé comme dans LoginView -->
+            <Border BackgroundColor="White"
+                    Padding="10"
+                    StrokeShape="RoundRectangle 80"
+                    HorizontalOptions="Center">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="2,2" Opacity="0.25" />
+                </Border.Shadow>
+                <Image Source="basic_fat.png"
+                       HeightRequest="100"
+                       WidthRequest="100"
+                       Aspect="AspectFill">
+                    <Image.Clip>
+                        <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50"/>
+                    </Image.Clip>
+                </Image>
+            </Border>
+
+            <!-- Message de bienvenue -->
+            <Label x:Name="WelcomeLabel"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   Margin="10,5" />
+
+            <Label Text="Version 2.0"
+                    FontSize="14"
+                    TextColor="White"
+                    HorizontalOptions="Center"
+                    FontAttributes="Italic"
+                    Margin="0,-10,0,10" />
+
+
+            <!-- Grille de boutons -->
+            <Grid ColumnSpacing="15" RowSpacing="15" Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="0" Grid.Column="0"
+                        Text="📷 Scanner un Code-Barres"
+                        BackgroundColor="White"
+                        TextColor="#6A5ACD"
+                        FontSize="16"
+                        CornerRadius="12"
+                        HeightRequest="50"
+                        Padding="10"
+                        Command="{Binding ScanBarcodeCommand}" />
+
+                <Button Grid.Row="0" Grid.Column="1"
+                        Text="👤 Voir mon Profil"
+                        BackgroundColor="White"
+                        TextColor="#6A5ACD"
+                        FontSize="16"
+                        CornerRadius="12"
+                        HeightRequest="50"
+                        Padding="10"
+                        Command="{Binding ViewProfileCommand}" />
+
+                <Button Grid.Row="1" Grid.Column="0"
+                        Text="➕ Ajouter une personne"
+                        BackgroundColor="White"
+                        TextColor="#6A5ACD"
+                        FontSize="16"
+                        CornerRadius="12"
+                        HeightRequest="50"
+                        Padding="10"
+                        Command="{Binding GoToAddMemberViewCommand}" />
+
+                <Button Grid.Row="1" Grid.Column="1"
+                        Text="📋 Voir tous les membres"
+                        BackgroundColor="White"
+                        TextColor="#6A5ACD"
+                        FontSize="16"
+                        CornerRadius="12"
+                        HeightRequest="50"
+                        Padding="10"
+                        Command="{Binding GoToAllMembersViewCommand}" />
+
+                <Button Grid.Row="2" Grid.Column="0"
+                        Text="Créer un utilisateur"
+                        BackgroundColor="#6A5ACD"
+                        TextColor="White"
+                        FontSize="16"
+                        CornerRadius="12"
+                        HeightRequest="50"
+                        Padding="10"
+                        x:Name="CreateUserButton"
+                        Command="{Binding GoToAddUserViewCommand}"
+                        IsVisible="true" />
+
+                <Button Grid.Row="2" Grid.Column="1"
+                        Text="👥 Gérer les utilisateurs"
+                        BackgroundColor="#6A5ACD"
+                        TextColor="White"
+                        FontSize="16"
+                        CornerRadius="12"
+                        HeightRequest="50"
+                        Padding="10"
+                        x:Name="UserListButton"
+                        Command="{Binding GoToUserListViewCommand}"
+                        IsVisible="true" />
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

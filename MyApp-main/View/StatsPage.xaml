@@ -1,0 +1,57 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:micro="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+             x:Class="MyApp.View.StatsPage"
+             Title="Statistiques"
+             BackgroundColor="Black">
+
+    <VerticalStackLayout Padding="30" Spacing="40" HorizontalOptions="Center" VerticalOptions="Center">
+
+        <!-- Titre principal -->
+        <Label Text="📊 Statistiques du membre"
+               FontSize="30"
+               FontAttributes="Bold"
+               TextColor="#FFA726"
+               HorizontalOptions="Center" />
+
+        <!-- Bloc de stats encadré -->
+        <Frame BackgroundColor="#212121"
+               BorderColor="#FFA726"
+               Padding="25"
+               CornerRadius="20"
+               HasShadow="True"
+               WidthRequest="320">
+
+            <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Label Text="Nombre de valeurs affichées"
+                       TextColor="White"
+                       FontSize="18"
+                       HorizontalOptions="Center" />
+
+                <Label Text="{Binding EntryCount}"
+                       TextColor="#FFA726"
+                       FontSize="44"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- Zone graphique -->
+        <Frame Padding="10"
+       CornerRadius="150"
+       BackgroundColor="#121212"
+       HasShadow="True"
+       BorderColor="#FFA726"
+       HorizontalOptions="Center">
+
+            <micro:ChartView Chart="{Binding MyObservableChart}" 
+                     HeightRequest="280"
+                     WidthRequest="280"
+                     BackgroundColor="Transparent"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"/>
+        </Frame>
+
+
+    </VerticalStackLayout>
+</ContentPage>

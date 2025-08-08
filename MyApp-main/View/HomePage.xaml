@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.HomePage"
+             BackgroundColor="#333"
+             Title="Accueil">
+    <ScrollView>
+    <VerticalStackLayout Padding="20" Spacing="25" HorizontalOptions="FillAndExpand">
+
+        <!-- Titre et logo amélioré -->
+        <Border StrokeThickness="1" Stroke="#E0E0E0" Background="#222" Padding="20" Margin="10" StrokeShape="RoundRectangle 20">
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="15">
+                <Image Source="basic_fat.png" 
+               WidthRequest="200" 
+               HeightRequest="200" 
+               Aspect="AspectFit"
+               HorizontalOptions="Center"/>
+                <Label Text="Bienvenue chez Basic-Fat !"
+               FontSize="28"
+               FontAttributes="Bold"
+               TextColor="White"
+               HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+        </Border>
+
+
+        <!-- Boutons d'action -->
+            <VerticalStackLayout Spacing="15">
+
+                <Border StrokeThickness="1" Stroke="#D0D0D0" Background="Transparent" Padding="0" StrokeShape="RoundRectangle 10">
+                    <Button Text="📷 Scanner un Code-Barres"
+                        FontSize="18"
+                        BackgroundColor="#6A5ACD"
+                        TextColor="White"
+                        Padding="15"
+                        CornerRadius="10"
+                        Clicked="OnScanBarcodeClicked"/>
+                </Border>
+
+                <Border StrokeThickness="1" Stroke="#D0D0D0" Background="Transparent" Padding="0" StrokeShape="RoundRectangle 10">
+                    <Button Text="👤 Voir mon Profil"
+                        FontSize="18"
+                        BackgroundColor="#FF8C00"
+                        TextColor="White"
+                        Padding="15"
+                        CornerRadius="10"
+                        Clicked="OnViewProfileClicked"/>
+                </Border>
+
+                <Border StrokeThickness="1" Stroke="#D0D0D0" Background="Transparent" Padding="0" StrokeShape="RoundRectangle 10">
+                    <Button Text="➕ Ajouter une personne"
+                        FontSize="18"
+                        BackgroundColor="#32CD32"
+                        TextColor="White"
+                        Padding="15"
+                        CornerRadius="10"
+                        Command="{Binding GoToAddMemberPageCommand}"/>
+                </Border>
+
+                <Border StrokeThickness="1" Stroke="#D0D0D0" Background="Transparent" Padding="0" StrokeShape="RoundRectangle 10">
+                    <Button Text="📋 Voir tous les membres"
+                        FontSize="18"
+                        BackgroundColor="#20B2AA"
+                        TextColor="White"
+                        Padding="15"
+                        CornerRadius="10"
+                        Command="{Binding GoToAllMembersPageCommand}"/>
+
+                </Border>
+
+
+            </VerticalStackLayout>
+
+            <ScrollView>
+            <CollectionView ItemsSource="{Binding Members}" HeightRequest="300">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border StrokeThickness="1" Stroke="#E0E0E0" Background="White" Padding="10" Margin="5" StrokeShape="RoundRectangle 15">
+                            <HorizontalStackLayout Spacing="10">
+                                <Image Source="{Binding ProfilePicture}" WidthRequest="50" HeightRequest="50" 
+                                       Aspect="AspectFill" Clip="Circle"/>
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding FirstName}" FontSize="18" FontAttributes="Bold" TextColor="#222"/>
+                                    <Label Text="{Binding LastName}" FontSize="16" TextColor="#555"/>
+                                </VerticalStackLayout>
+                                <Button Text="👁 Voir"
+                                        BackgroundColor="#6A5ACD"
+                                        TextColor="White"
+                                        Padding="5"
+                                        FontSize="14"
+                                        CornerRadius="8"
+                                        Command="{Binding Path=BindingContext.ViewDetailsCommand, Source={x:Reference HomePage}}"
+                                        CommandParameter="{Binding Id}"/>
+                            </HorizontalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+
+    </VerticalStackLayout>
+
+    </ScrollView>
+</ContentPage>

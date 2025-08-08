@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.ProfileView"
+             Title="Mon profil">
+
+    <!-- Fond dégradé Basic-Fat -->
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FF6600" Offset="0.0" />
+            <GradientStop Color="#FFA726" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="25" Spacing="30"
+                             VerticalOptions="CenterAndExpand"
+                             HorizontalOptions="Center">
+
+            <!-- Avatar -->
+            <Border Stroke="White" StrokeThickness="2"
+                    Padding="8"
+                    StrokeShape="RoundRectangle 999"
+                    HorizontalOptions="Center">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="2,2" Opacity="0.25" />
+                </Border.Shadow>
+                <Image Source="profile.png"
+                       HeightRequest="120"
+                       WidthRequest="120"
+                       Aspect="AspectFill"
+                       Clip="Circle" />
+            </Border>
+
+            <!-- Bloc infos sans fond jaune -->
+            <Border Stroke="White"
+                    StrokeThickness="1"
+                    BackgroundColor="Transparent"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="20"
+                    WidthRequest="330"
+                    Margin="10">
+                <VerticalStackLayout Spacing="12">
+
+                    <HorizontalStackLayout>
+                        <Label Text="👤 Nom :" FontAttributes="Bold" TextColor="White" FontSize="18" />
+                        <Label x:Name="NameLabel" Text="-" TextColor="White" FontSize="18" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <Label Text="📧 Email :" FontAttributes="Bold" TextColor="White" FontSize="18" />
+                        <Label x:Name="EmailLabel" Text="-" TextColor="White" FontSize="18" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <Label Text="🔐 Rôle :" FontAttributes="Bold" TextColor="White" FontSize="18" />
+                        <Label x:Name="RoleLabel" Text="-" TextColor="White" FontSize="18" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <Label Text="📅 Créé le :" FontAttributes="Bold" TextColor="White" FontSize="18" />
+                        <Label x:Name="JoinedLabel" Text="-" TextColor="White" FontSize="18" />
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Bouton visible uniquement pour admin -->
+            <Button x:Name="EditButton"
+                    Text="📝 Modifier le Profil"
+                    IsVisible="False"
+                    BackgroundColor="#6A5ACD"
+                    TextColor="White"
+                    FontSize="18"
+                    CornerRadius="14"
+                    HeightRequest="50"
+                    WidthRequest="250"
+                    Clicked="OnEditProfileClicked">
+                <Button.Shadow>
+                    <Shadow Brush="Black" Offset="2,2" Opacity="0.2" />
+                </Button.Shadow>
+            </Button>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

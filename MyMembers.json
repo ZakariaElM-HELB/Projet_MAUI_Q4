@@ -1,0 +1,52 @@
+[
+  {
+    "Id": "0",
+    "FirstName": "Miguel",
+    "LastName": "Dupont",
+    "BirthDate": "1995-04-23",
+    "ProfilePicture": "miguel.png",
+    "SubscriptionType": "Standard",
+    "Age": 29,
+    "ProfileBackground": "bg_silver.jpg"
+  },
+  {
+    "Id": "1",
+    "FirstName": "Alice",
+    "LastName": "Martin",
+    "BirthDate": "1988-11-15",
+    "ProfilePicture": "alice.png",
+    "SubscriptionType": "Standard",
+    "Age": 36,
+    "ProfileBackground": "bg_silver.jpg"
+  },
+  {
+    "Id": "2",
+    "FirstName": "Robert",
+    "LastName": "Durand",
+    "BirthDate": "2000-07-08",
+    "ProfilePicture": "robert.png",
+    "SubscriptionType": "Premium",
+    "Age": 24,
+    "ProfileBackground": "bg_gold.jpg"
+  },
+  {
+    "Id": "3",
+    "FirstName": "Sophie",
+    "LastName": "Lemoine",
+    "BirthDate": "1992-02-19",
+    "ProfilePicture": "sophie.png",
+    "SubscriptionType": "Standard",
+    "Age": 33,
+    "ProfileBackground": "bg_silver.jpg"
+  },
+  {
+    "Id": "4",
+    "FirstName": "El Moudni",
+    "LastName": "Zakaria",
+    "BirthDate": "2024-01-09",
+    "ProfilePicture": "default_profile.png",
+    "SubscriptionType": "Gratuit",
+    "Age": 1,
+    "ProfileBackground": "bg_bronze.jpg"
+  }
+]

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.AddMemberView"
+             Title="Ajouter un membre">
+
+    <!-- Dégradé de fond -->
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FF6600" Offset="0.0" />
+            <GradientStop Color="#FFA726" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="25" VerticalOptions="CenterAndExpand">
+
+            <!-- Logo Basic Fit -->
+            <Border BackgroundColor="White"
+                    Padding="10"
+                    StrokeShape="RoundRectangle 80"
+                    HorizontalOptions="Center">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="2,2" Opacity="0.25" />
+                </Border.Shadow>
+                <Image Source="basic_fat.png"
+                       HeightRequest="100"
+                       WidthRequest="100"
+                       Aspect="AspectFill">
+                    <Image.Clip>
+                        <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50"/>
+                    </Image.Clip>
+                </Image>
+            </Border>
+
+            <!-- Titre -->
+            <Label Text="NOUVEAU MEMBRE"
+                   FontAttributes="Bold"
+                   FontSize="28"
+                   HorizontalOptions="Center"
+                   TextColor="White" />
+
+            <!-- Prénom -->
+            <Border Stroke="#DDD" Background="#F0F0F0" StrokeShape="RoundRectangle 12">
+                <HorizontalStackLayout Padding="10" Spacing="10">
+                    <Image Source="icon_user.png" WidthRequest="20" HeightRequest="20" />
+                    <Entry Text="{Binding FirstName}"
+                           FontSize="18"
+                           Placeholder="Prénom"
+                           BackgroundColor="Transparent"
+                           TextColor="#333"
+                           PlaceholderColor="#888"
+                           WidthRequest="280"/>
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- Nom -->
+            <Border Stroke="#DDD" Background="#F0F0F0" StrokeShape="RoundRectangle 12">
+                <HorizontalStackLayout Padding="10" Spacing="10">
+                    <Image Source="icon_user.png" WidthRequest="20" HeightRequest="20" />
+                    <Entry Text="{Binding LastName}"
+                           FontSize="18"
+                           Placeholder="Nom"
+                           BackgroundColor="Transparent"
+                           TextColor="#333"
+                           PlaceholderColor="#888"
+                           WidthRequest="280"/>
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- Date de naissance -->
+            <Border Stroke="#DDD" Background="#F0F0F0" StrokeShape="RoundRectangle 12">
+                <HorizontalStackLayout Padding="10" Spacing="10">
+                    <Image Source="icon_calendar.png" WidthRequest="20" HeightRequest="20" />
+                    <DatePicker Date="{Binding BirthDate, Mode=TwoWay}"
+                                Format="yyyy-MM-dd"
+                                TextColor="#333"
+                                WidthRequest="280" />
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- URL de l'image -->
+            <Border Stroke="#DDD" Background="#F0F0F0" StrokeShape="RoundRectangle 12">
+                <HorizontalStackLayout Padding="10" Spacing="10">
+                    <Image Source="icon_image.png" WidthRequest="20" HeightRequest="20" />
+                    <Entry Text="{Binding ProfilePicture}"
+                           FontSize="18"
+                           Placeholder="URL de l'image"
+                           BackgroundColor="Transparent"
+                           TextColor="#333"
+                           PlaceholderColor="#888"
+                           WidthRequest="280"/>
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- Bouton Ajouter -->
+            <Button Text="AJOUTER LE MEMBRE"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    BackgroundColor="#6A5ACD"
+                    TextColor="White"
+                    Command="{Binding SaveNewMemberCommand}"
+                    CornerRadius="10"
+                    HeightRequest="50" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

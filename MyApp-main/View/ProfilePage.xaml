@@ -1,0 +1,25 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.ProfilePage">
+
+    <VerticalStackLayout Padding="20" Spacing="20" HorizontalOptions="Center">
+
+        <!-- Image de profil -->
+        <Frame CornerRadius="100" BorderColor="Gray" WidthRequest="120" HeightRequest="120">
+            <Image Source="profile.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"/>
+        </Frame>
+
+        <!-- Informations de l'utilisateur -->
+        <Label Text="Nom : Alice Martin" FontSize="20" FontAttributes="Bold"/>
+        <Label Text="ID : 12345" FontSize="18"/>
+        <Label Text="Date d'adhésion : 15 Nov 2022" FontSize="18"/>
+        <Label Text="Type d'abonnement : Premium" FontSize="18"/>
+
+        <!-- Bouton Modifier -->
+        <Button Text="📝 Modifier le Profil"
+                BackgroundColor="#008080"
+                TextColor="White"
+                FontSize="18"
+                Clicked="OnEditProfileClicked"/>
+    </VerticalStackLayout>
+</ContentPage>

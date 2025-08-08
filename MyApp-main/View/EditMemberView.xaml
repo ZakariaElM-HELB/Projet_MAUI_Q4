@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.EditMemberView"
+             Title="Modifier un membre"
+             BackgroundColor="#1e1e1e"
+             xmlns:viewmodel="clr-namespace:MyApp.ViewModel">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="✏ Modifier le membre"
+                   FontSize="26"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+
+            <Entry Text="{Binding FirstName}" Placeholder="Prénom" />
+            <Entry Text="{Binding LastName}" Placeholder="Nom" />
+            <Entry Text="{Binding BirthDate}" Placeholder="Date de naissance (yyyy-MM-dd)" />
+            <Entry Text="{Binding ProfilePicture}" Placeholder="URL de la photo de profil" />
+            <Picker Title="Type d’abonnement"
+                            SelectedItem="{Binding SubscriptionType, Mode=TwoWay}"
+                            TextColor="White"
+                            BackgroundColor="#333"
+                            TitleColor="#aaa"
+                            FontSize="16">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Gratuit</x:String>
+                        <x:String>Standard</x:String>
+                        <x:String>Premium</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+
+            <Button Text="✅ Enregistrer les modifications"
+                    Command="{Binding SaveChangesCommand}"
+                    BackgroundColor="#4caf50"
+                    TextColor="White"
+                    CornerRadius="10"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.EditUserView"
+             Title="Modifier un utilisateur">
+
+    <!-- Dégradé de fond -->
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FF6600" Offset="0.0" />
+            <GradientStop Color="#FFA726" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20" VerticalOptions="CenterAndExpand">
+
+            <Label Text="Modifier un utilisateur"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center" />
+
+            <!-- Nom -->
+            <Border BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 12">
+                <Entry Placeholder="Nom d'utilisateur"
+                       Text="{Binding Username}"
+                       TextColor="#6A5ACD"
+                       FontSize="16"
+                       HeightRequest="50"
+                       BackgroundColor="Transparent" />
+            </Border>
+
+            <!-- Email -->
+            <Border BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 12">
+                <Entry Placeholder="Email"
+                       Keyboard="Email"
+                       Text="{Binding Email}"
+                       TextColor="#6A5ACD"
+                       FontSize="16"
+                       HeightRequest="50"
+                       BackgroundColor="Transparent" />
+            </Border>
+
+            <!-- Rôle -->
+            <Border BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 12">
+                <Picker Title="Rôle"
+                        SelectedItem="{Binding Role}"
+                        FontSize="16"
+                        TextColor="#6A5ACD"
+                        HeightRequest="50"
+                        BackgroundColor="Transparent">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>admin</x:String>
+                            <x:String>user</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </Border>
+
+            <!-- Mot de passe -->
+            <Border BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 12">
+                <Entry Placeholder="Nouveau mot de passe (laisser vide)"
+                       IsPassword="True"
+                       Text="{Binding Password}"
+                       TextColor="#6A5ACD"
+                       FontSize="16"
+                       HeightRequest="50"
+                       BackgroundColor="Transparent" />
+            </Border>
+
+            <!-- Message d'erreur -->
+            <Label Text="{Binding ErrorMessage}"
+                   IsVisible="{Binding IsErrorVisible}"
+                   TextColor="Crimson"
+                   FontAttributes="Bold"
+                   FontSize="14"
+                   HorizontalOptions="Center" />
+
+            <!-- Bouton Enregistrer -->
+            <Button Text="💾 Enregistrer"
+                    BackgroundColor="#6A5ACD"
+                    TextColor="White"
+                    FontSize="18"
+                    CornerRadius="12"
+                    HeightRequest="50"
+                    Command="{Binding SaveUserCommand}"
+                    IsEnabled="{Binding IsNotBusy}" />
+
+            <!-- Indicateur de chargement -->
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"
+                               Color="White"
+                               HorizontalOptions="Center"
+                               Margin="0,20,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

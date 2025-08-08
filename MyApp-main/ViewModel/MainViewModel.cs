@@ -1,21 +1,74 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace MyApp.ViewModel;
 
-public partial class MainViewModel: ObservableObject
+public partial class MainViewModel(JSONServices MyJSONService) : BaseViewModel
 {
-    [ObservableProperty]
-    private string myVar = "Blabla";
+    public ObservableCollection<Member> MyObservableList { get; } = [];
 
     [RelayCommand]
-    internal void ChangeBindedLabel()
+    internal async Task GoToDetails(string id)
     {
-        MyVar += "blabla";
+        if (string.IsNullOrEmpty(id))
+        {
+            await Shell.Current.DisplayAlert("Erreur", "Aucun ID valide pour ce membre.", "OK");
+            return;
+        }
+
+        Console.WriteLine($"Navigation vers DetailsView avec ID : {id}");
+
+        await Shell.Current.GoToAsync($"DetailsView?selectedMember={id}");
+    }
+
+    [RelayCommand]
+    internal async Task SaveJSON()
+    {
+        if (IsBusy) return;
+        IsBusy = true;
+
+        try
+        {
+            await MyJSONService.SetMembers();
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
+
+    [RelayCommand]
+    internal async Task LoadJSON()
+    {
+        if (IsBusy) return;
+        IsBusy = true;
+
+        try
+        {
+            Globals.MyMembers = await MyJSONService.GetMembers();
+
+            MyObservableList.Clear();
+
+            foreach (var item in Globals.MyMembers)
+            {
+                MyObservableList.Add(item);
+            }
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
+
+    internal void RefreshPage()
+    {
+        MyObservableList.Clear();
+
+        foreach (var item in Globals.MyMembers)
+        {
+            MyObservableList.Add(item);
+        }
     }
 }

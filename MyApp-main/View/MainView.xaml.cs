@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace MyApp.View;
 
 public partial class MainView : ContentPage
@@ -9,4 +11,13 @@ public partial class MainView : ContentPage
 		InitializeComponent();
 		BindingContext=viewModel;
 	}
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+
+        BindingContext = null;
+        viewModel.RefreshPage();
+        BindingContext = viewModel;
+        _ = viewModel.LoadJSON();
+    }
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.AddMemberPage"
+             Title="Ajouter un membre"
+             BackgroundColor="#1e1e1e">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Ajout d'un nouveau membre"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,15"/>
+
+            <Border StrokeThickness="1" Stroke="#444" Background="#2e2e2e" Padding="15" StrokeShape="RoundRectangle 15">
+                <VerticalStackLayout Spacing="15">
+
+                    <!-- Prénom -->
+                    <Label Text="Prénom :" FontSize="18" TextColor="White"/>
+                    <Entry Text="{Binding FirstName}"
+                           Placeholder="Entrez un prénom"
+                           BackgroundColor="White"
+                           TextColor="Black"
+                           FontSize="16"/>
+
+                    <!-- Nom -->
+                    <Label Text="Nom :" FontSize="18" TextColor="White"/>
+                    <Entry Text="{Binding LastName}"
+                           Placeholder="Entrez un nom"
+                           BackgroundColor="White"
+                           TextColor="Black"
+                           FontSize="16"/>
+
+                    <!-- Date de naissance -->
+                    <Label Text="Date de Naissance :" FontSize="18" TextColor="White"/>
+                    <Border StrokeThickness="1" Stroke="#888" Background="White" Padding="5" StrokeShape="RoundRectangle 10">
+                        <DatePicker Date="{Binding BirthDate, Mode=TwoWay}"
+                                    TextColor="Black"
+                                    Format="yyyy-MM-dd"/>
+                    </Border>
+
+                    <!-- Photo -->
+                    <Label Text="URL de l'image de profil :" FontSize="18" TextColor="White"/>
+                    <Entry Text="{Binding ProfilePicture}"
+                           Placeholder="Collez l'URL"
+                           BackgroundColor="White"
+                           TextColor="Black"
+                           FontSize="16"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="✅ Ajouter"
+                    BackgroundColor="#32CD32"
+                    TextColor="White"
+                    FontSize="18"
+                    CornerRadius="10"
+                    Command="{Binding SaveNewMemberCommand}"
+                    Margin="0,20,0,0"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
